@@ -1,0 +1,75 @@
+﻿@model DucktaleIT_Assignment.Models.Student
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Create Student</h4>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Message
+    </div>
+}
+
+<form action="/Student/Create" method="post" novalidate="novalidate">
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="RollNo">Roll No</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="Roll No must be a number." data-val-required="RollNo is required." id="RollNo" name="RollNo" type="number" value="">
+                <span class="field-validation-valid text-danger" data-valmsg-for="RollNo" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="FirstName">First Name</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-required="First Name is required."  id="FirstName" name="FirstName" type="text" value="">
+                <span class="field-validation-valid text-danger" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="LastName">Last Name</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-required="Last Name is required." id="LastName" name="LastName" type="text" value="">
+                <span class="field-validation-valid text-danger" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="ClassName">Class Name</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-required="Class Name is required."  id="ClassName" name="ClassName" type="text" value="">
+                <span class="field-validation-valid text-danger" data-valmsg-for="ClassName" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Percentage">Percentage</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" data-val="true" data-val-number="Percentage must be a number." data-val-required="Percentage is required." data-val-range="Percentage must be between 0 and 100." data-val-range-max="100" data-val-range-min="0" id="Percentage" name="Percentage" type="text" value="">
+                <span class="field-validation-valid text-danger" data-valmsg-for="Percentage" data-valmsg-replace="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary">
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

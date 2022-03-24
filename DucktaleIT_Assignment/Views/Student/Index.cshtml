@@ -1,0 +1,70 @@
+﻿@model List<DucktaleIT_Assignment.Models.Student>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <p class="text-left">
+        @Html.ActionLink("Create New", "Create", "Student")
+    </p>
+
+    <form asp-controller="Student" asp-action="Index" class="form-horizontal">
+        <p>
+            Filter: <input type="text" name="searchString" placeholder="search FirstName, LastName, ClassName" style="width:315px;" value="@(ViewBag.SearchString??"")" />
+            <input type="submit" class="btn-primary" value="Filter" />
+        </p>
+    </form>
+
+    @if (ViewBag.Message != null)
+    {
+
+        <div class="alert alert-success" role="alert">
+            @ViewBag.Message
+        </div>
+    }
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Roll No</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Class Name</th>
+                    <th>Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.RollNo
+                            </td>
+                            <td>
+                                @item.FirstName
+                            </td>
+                            <td>
+                                @item.LastName
+                            </td>
+                            <td>
+                                @item.ClassName
+                            </td>
+                            <td>
+                                @String.Concat(@item.Percentage.ToString("0.00"), "%")
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center"><b>No Data Available. Please Add Data By CLick On Create Button</b></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
